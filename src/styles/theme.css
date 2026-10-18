@@ -1,0 +1,156 @@
+/* ==========================================================================
+   Global Design Tokens & Theme System (ohin.me)
+   Philosophy: quiet editorial layout — warm paper, ink-dark text, and a
+   single restrained accent used sparingly so content stays in focus.
+   ========================================================================== */
+
+/* Light is the default theme (applies when no data-theme or data-theme='light') */
+:root,
+[data-theme='light'] {
+  /* Surfaces — warm archival paper */
+  --bg-canvas: #f7f5f0;
+  --bg-elevated: #f1eee7;
+  --bg-surface: #fcfbf8;
+  --bg-surface-hover: #f4f1ea;
+  --bg-glass: rgba(247, 245, 240, 0.9);
+  --bg-subtle: rgba(20, 24, 32, 0.03);
+
+  /* Text — deep ink */
+  --text-primary: #1a1d23;
+  --text-secondary: #4a505c;
+  --text-muted: #80868f;
+  --text-inverse: #f7f5f0;
+
+  /* Accent — muted terracotta (used for small details, not large fills) */
+  --accent-primary: #b5532a;
+  --accent-primary-soft: rgba(181, 83, 42, 0.07);
+  --accent-primary-border: rgba(181, 83, 42, 0.28);
+
+  /* Secondary accent — muted slate blue */
+  --accent-secondary: #3c6488;
+  --accent-secondary-soft: rgba(60, 100, 136, 0.07);
+  --accent-secondary-border: rgba(60, 100, 136, 0.26);
+
+  --accent-emerald: #3f7d6b;
+  --accent-emerald-soft: rgba(63, 125, 107, 0.08);
+
+  /* Hairlines */
+  --border-hairline: rgba(26, 29, 35, 0.08);
+  --border-strong: rgba(26, 29, 35, 0.16);
+  --shadow-elevated: 0 18px 40px -18px rgba(26, 29, 35, 0.14);
+  --shadow-subtle: 0 2px 10px rgba(26, 29, 35, 0.04);
+}
+
+[data-theme='dark'] {
+  /* Surfaces — soft charcoal (not pure black, to reduce contrast fatigue) */
+  --bg-canvas: #121418;
+  --bg-elevated: #181b20;
+  --bg-surface: #1b1e24;
+  --bg-surface-hover: #21252c;
+  --bg-glass: rgba(18, 20, 24, 0.88);
+  --bg-subtle: rgba(255, 255, 255, 0.03);
+
+  /* Text — warm ivory */
+  --text-primary: #ece8df;
+  --text-secondary: #aab0b9;
+  --text-muted: #747b86;
+  --text-inverse: #121418;
+
+  --accent-primary: #d9875f;
+  --accent-primary-soft: rgba(217, 135, 95, 0.09);
+  --accent-primary-border: rgba(217, 135, 95, 0.3);
+
+  --accent-secondary: #86a9c9;
+  --accent-secondary-soft: rgba(134, 169, 201, 0.09);
+  --accent-secondary-border: rgba(134, 169, 201, 0.28);
+
+  --accent-emerald: #7fb8a4;
+  --accent-emerald-soft: rgba(127, 184, 164, 0.1);
+
+  --border-hairline: rgba(236, 232, 223, 0.08);
+  --border-strong: rgba(236, 232, 223, 0.15);
+  --shadow-elevated: 0 18px 40px -16px rgba(0, 0, 0, 0.55);
+  --shadow-subtle: 0 2px 10px rgba(0, 0, 0, 0.25);
+}
+
+:root {
+  /* Typography Families */
+  --font-serif: 'Instrument Serif', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Layout & Spacing */
+  --container-max: 1120px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --transition-fast: 160ms cubic-bezier(0.22, 1, 0.36, 1);
+  --transition-smooth: 320ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Reset & Base Structure */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  background-color: var(--bg-canvas);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--bg-canvas);
+  color: var(--text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+  transition:
+    background-color var(--transition-smooth),
+    color var(--transition-smooth);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: inherit;
+}
+
+::selection {
+  background-color: var(--accent-primary);
+  color: #ffffff;
+}
+
+/* Focus visibility for keyboard navigation */
+:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
+}
+
+/* Respect users who prefer less motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0ms !important;
+    animation-duration: 0ms !important;
+  }
+}
